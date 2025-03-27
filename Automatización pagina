@@ -1,0 +1,30 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Configuración del navegador
+driver = webdriver.Chrome()  # Asegúrate de tener el controlador de Chrome instalado
+driver.get("https://www.saucedemo.com/")
+
+# Realizar el registro (Ejemplo: Iniciar sesión)
+try:
+    # Completar los campos de usuario y contraseña
+    username_input = driver.find_element(By.ID, "user-name")
+    password_input = driver.find_element(By.ID, "password")
+    username_input.send_keys("standard_user")  # Cambiar por datos según el caso de prueba
+    password_input.send_keys("secret_sauce")
+    
+    # Hacer clic en el botón de inicio de sesión
+    login_button = driver.find_element(By.ID, "login-button")
+    login_button.click()
+    
+    # Esperar y verificar éxito
+    time.sleep(3)
+    print("Inicio de sesión completado")
+    
+except Exception as e:
+    print(f"Ocurrió un error: {e}")
+
+# Cerrar el navegador
+driver.quit()
